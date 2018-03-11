@@ -2,7 +2,6 @@ package hotchemi.com.github;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /*
  * A memory cache implementation which uses a LRU policy.
