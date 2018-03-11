@@ -23,7 +23,14 @@ public class LruCache<K, V> implements Cache<K, V> {
 
     private final int maxMemorySize;
 
-    private int memorySize;
+    private int memorySize
+        
+    public static <T> T requireNonNull(T obj, String message) {
+      if (obj == null)
+        throw new NullPointerException(message);
+       return obj;
+    }
+    
 
     public LruCache() {
         this(DEFAULT_CAPACITY);
@@ -39,7 +46,7 @@ public class LruCache<K, V> implements Cache<K, V> {
 
     @Override
     public final V get(K key) {
-        Objects.requireNonNull(key, "key == null");
+       requireNonNull(key, "key == null");
         synchronized (this) {
             V value = map.get(key);
             if (value != null) {
@@ -51,8 +58,8 @@ public class LruCache<K, V> implements Cache<K, V> {
 
     @Override
     public final V put(K key, V value) {
-        Objects.requireNonNull(key, "key == null");
-        Objects.requireNonNull(value, "value == null");
+       requireNonNull(key, "key == null");
+       requireNonNull(value, "value == null");
         V previous;
         synchronized (this) {
             previous = map.put(key, value);
@@ -67,7 +74,7 @@ public class LruCache<K, V> implements Cache<K, V> {
 
     @Override
     public final V remove(K key) {
-        Objects.requireNonNull(key, "key == null");
+        requireNonNull(key, "key == null");
         V previous;
         synchronized (this) {
             previous = map.remove(key);
